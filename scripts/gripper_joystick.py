@@ -76,12 +76,12 @@ def map_joystick(joystick):
             for (test, _cmd, doc) in bindings:
                 if callable(doc):
                     doc = doc()
-                print("%s: %s" % (str(test[1]), doc))
+                print(("%s: %s" % (str(test[1]), doc)))
 
     def capability_warning(gripper, cmd):
         msg = ("%s %s - not capable of '%s' command" %
                (gripper.name, gripper.type(), cmd))
-        print msg
+        print(msg)
 
     def offset_position(gripper, offset):
         if gripper.type() != 'electric':

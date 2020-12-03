@@ -97,7 +97,7 @@ def map_joystick(joystick):
             for (test, _cmd, doc) in bindings:
                 if callable(doc):
                     doc = doc()
-                print("%s: %s" % (str(test[1][0]), doc))
+                print(("%s: %s" % (str(test[1][0]), doc)))
 
     bindings_list = []
     bindings = (
@@ -148,7 +148,7 @@ def map_joystick(joystick):
             if test[0](*test[1]):
                 cmd[0](*cmd[1])
                 if callable(doc):
-                    print(doc())
+                    print((doc()))
                 else:
                     print(doc)
         if len(lcmd):

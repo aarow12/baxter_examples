@@ -55,16 +55,16 @@ def blink():
 
 def echo_input():
     def b0_pressed(v):
-        print ("Button 0: %s" % (v,))
+        print(("Button 0: %s" % (v,)))
 
     def b1_pressed(v):
-        print ("Button 1: %s" % (v,))
+        print(("Button 1: %s" % (v,)))
 
     def b2_pressed(v):
-        print ("Button 2: %s" % (v,))
+        print(("Button 2: %s" % (v,)))
 
     def wheel_moved(v):
-        print ("Wheel Increment: %d, New Value: %s" % (v, nav.wheel))
+        print(("Wheel Increment: %d, New Value: %s" % (v, nav.wheel)))
 
     nav = baxter_interface.Navigator('left')
     nav.button0_changed.connect(b0_pressed)

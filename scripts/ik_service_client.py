@@ -95,7 +95,7 @@ def ik_test(limb):
     try:
         rospy.wait_for_service(ns, 5.0)
         resp = iksvc(ikreq)
-    except (rospy.ServiceException, rospy.ROSException), e:
+    except (rospy.ServiceException, rospy.ROSException) as e:
         rospy.logerr("Service call failed: %s" % (e,))
         return 1
 
@@ -109,13 +109,13 @@ def ik_test(limb):
                     ikreq.SEED_CURRENT: 'Current Joint Angles',
                     ikreq.SEED_NS_MAP: 'Nullspace Setpoints',
                    }.get(resp_seeds[0], 'None')
-        print("SUCCESS - Valid Joint Solution Found from Seed Type: %s" %
-              (seed_str,))
+        print(("SUCCESS - Valid Joint Solution Found from Seed Type: %s" %
+              (seed_str,)))
         # Format solution into Limb API-compatible dictionary
-        limb_joints = dict(zip(resp.joints[0].name, resp.joints[0].position))
-        print "\nIK Joint Solution:\n", limb_joints
-        print "------------------"
-        print "Response Message:\n", resp
+        limb_joints = dict(list(zip(resp.joints[0].name, resp.joints[0].position)))
+        print("\nIK Joint Solution:\n", limb_joints)
+        print("------------------")
+        print("Response Message:\n", resp)
     else:
         print("INVALID POSE - No Valid Joint Solution Found.")
 

@@ -145,14 +145,14 @@ def map_keyboard():
             elif c in bindings:
                 cmd = bindings[c]
                 cmd[0](*cmd[1])
-                print("command: %s" % (cmd[2],))
+                print(("command: %s" % (cmd[2],)))
             else:
                 print("key bindings: ")
                 print("  Esc: Quit")
                 print("  ?: Help")
-                for key, val in sorted(bindings.items(),
+                for key, val in sorted(list(bindings.items()),
                                        key=lambda x: x[1][2]):
-                    print("  %s: %s" % (key, val[2]))
+                    print(("  %s: %s" % (key, val[2])))
     # force shutdown call if caught by key handler
     rospy.signal_shutdown("Example finished.")
 

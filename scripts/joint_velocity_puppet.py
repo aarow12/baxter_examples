@@ -65,7 +65,7 @@ class Puppeteer(object):
 
     def _reset_control_modes(self):
         rate = rospy.Rate(100)
-        for _ in xrange(100):
+        for _ in range(100):
             if rospy.is_shutdown():
                 return False
             self._control_arm.exit_control_mode()
@@ -101,9 +101,9 @@ class Puppeteer(object):
         control_joint_names = self._control_arm.joint_names()
         puppet_joint_names = self._puppet_arm.joint_names()
 
-        print ("Puppeting:\n"
+        print(("Puppeting:\n"
               "  Grab %s cuff and move arm.\n"
-              "  Press Ctrl-C to stop...") % (self._control_limb,)
+              "  Press Ctrl-C to stop...") % (self._control_limb,))
         while not rospy.is_shutdown():
             cmd = {}
             for idx, name in enumerate(puppet_joint_names):
@@ -144,8 +144,8 @@ def main():
     )
     args = parser.parse_args(rospy.myargv()[1:])
     if (args.amplification < min_gain or max_gain < args.amplification):
-        print("Exiting: Amplification must be between: [%g, %g]" %
-              (min_gain, max_gain))
+        print(("Exiting: Amplification must be between: [%g, %g]" %
+              (min_gain, max_gain)))
         return 1
 
     print("Initializing node... ")

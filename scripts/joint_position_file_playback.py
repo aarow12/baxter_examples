@@ -57,14 +57,14 @@ def clean_line(line, names):
     #convert the line of strings to a float or None
     line = [try_float(x) for x in line.rstrip().split(',')]
     #zip the values with the joint names
-    combined = zip(names[1:], line[1:])
+    combined = list(zip(names[1:], line[1:]))
     #take out any tuples that have a none value
     cleaned = [x for x in combined if x[1] is not None]
     #convert it to a dictionary with only valid commands
     command = dict(cleaned)
-    left_command = dict((key, command[key]) for key in command.keys()
+    left_command = dict((key, command[key]) for key in list(command.keys())
                         if key[:-2] == 'left_')
-    right_command = dict((key, command[key]) for key in command.keys()
+    right_command = dict((key, command[key]) for key in list(command.keys())
                          if key[:-2] == 'right_')
     return (command, left_command, right_command, line)
 
@@ -100,7 +100,7 @@ def map_file(filename, loops=1):
         grip_right.type() != 'custom'):
         grip_right.calibrate()
 
-    print("Playing back: %s" % (filename,))
+    print(("Playing back: %s" % (filename,)))
     with open(filename, 'r') as f:
         lines = f.readlines()
     keys = lines[0].rstrip().split(',')
@@ -140,7 +140,7 @@ def map_file(filename, loops=1):
                     grip_right.type() != 'custom'):
                     grip_right.command_position(cmd['right_gripper'])
                 rate.sleep()
-        print
+        print()
     return True
 
 
